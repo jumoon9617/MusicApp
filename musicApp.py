@@ -1,20 +1,32 @@
 import tkinter as tk
 import os
-from playsound import playsound
+import pygame as pg
 from tkinter import filedialog
 
-def playMusic():
-    playsound("")
+pg.init()
+
+def playMusic(file_path):
+    pg.mixer.music.load(file_path)
+    pg.mixer.music.play()
+    
+    while pg.mixer.music.get_busy():
+        pg.time.Clock().tick(10)
+    
+    pg.quit()
 
 def runPlayer():
     print("run_player")
 
 #GUI
 root = tk.Tk()
-root.geometry("250x250")
+root.geometry("300x300")
 
-#Runボタン
-runButton = tk.Button(root, text = "Run", command = runPlayer)
-runButton.place(x=110, y=30)
+#selectボタン
+selectButton = tk.Button(root, text = "Run", command = runPlayer)
+selectButton.pack(pady=10)
+selectButton.place(x=150, y=150)
+
+file_list = tk.Listbox(root, selectmode=tk.SINGLE)
+#file_list.pack(pady=10)
 
 root.mainloop()
