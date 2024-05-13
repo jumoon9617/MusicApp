@@ -1,20 +1,42 @@
 import tkinter as tk
 import os
-from playsound import playsound
+import pygame as pg
 from tkinter import filedialog
 
-def playMusic():
-    playsound("")
+pg.init()
 
-def runPlayer():
-    print("run_player")
+def playMusic():
+    music_folder = "music_files"
+    music_file = "ゆきうさだるま.mp3"
+    folder_path = os.path.abspath(music_folder)
+    file_path = os.path.join(folder_path, music_file)
+
+    pg.mixer.music.load(file_path)
+    pg.mixer.music.play()
+    
+    
+    # while pg.mixer.music.get_busy():
+    #     pg.time.Clock().tick(10)
+    
+    # pg.quit()
+
+def stopMusic():
+    pg.mixer.music.stop()
 
 #GUI
 root = tk.Tk()
-root.geometry("250x250")
+root.geometry("300x300")
 
-#Runボタン
-runButton = tk.Button(root, text = "Run", command = runPlayer)
-runButton.place(x=110, y=30)
+# selectボタン
+#selectButton = tk.Button(root, text="Select Music", command=selectMusic)
+#selectButton.pack(pady=10)
+
+# playボタン
+playButton = tk.Button(root, text="Play Music", command=playMusic)
+playButton.pack(pady=10)
+
+# stopボタン
+stopButton = tk.Button(root, text="Stop Music", command=stopMusic)
+stopButton.pack(pady=10)
 
 root.mainloop()
