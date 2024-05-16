@@ -70,6 +70,7 @@ stopButton.pack(pady=10)
 
 #roopボタン
 roopButton = tk.Button(root, text="roop Music", command=roopMusic)
+roopButton.pack(pady=10)
 
 #selectイベント
 listbox.bind("<<ListboxSelect>>", onSelect)
