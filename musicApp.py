@@ -39,7 +39,11 @@ def stopMusic():
     
 #ループ再生
 def roopMusic():
-    print("roop music...")
+    roop = False
+    if(roop):
+        print("roop play...")
+    else:
+        print("single play...")
 
 #GUI
 root = tk.Tk()
